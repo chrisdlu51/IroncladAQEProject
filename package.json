@@ -1,0 +1,19 @@
+{
+  "name": "cypress-sandbox-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@cypress/webpack-preprocessor": "^6.0.2",
+    "@types/cypress": "^0.1.6",
+    "cypress": "^14.2.0",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.8.2"
+  }
+}
