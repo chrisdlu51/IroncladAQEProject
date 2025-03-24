@@ -18,8 +18,8 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Run Cypress Tests with mochawesome
-        run: npx cypress run --reporter mochawesome
+      - name: Run Cypress Tests in parallel with mochawesome
+        run: npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --parallel --reporter mochawesome
 
       - name: Upload Mochawesome JSON Reports
         if: always()
