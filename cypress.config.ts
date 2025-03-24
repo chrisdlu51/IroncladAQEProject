@@ -4,8 +4,9 @@ import path from 'path';
 
 export default defineConfig({
   e2e: {
-    baseUrl: "https://www.saucedemo.com/", // Change this as needed
-    specPattern: "cypress/**/**/*.cy.{js,jsx,ts,tsx}",
+    baseUrl: 'https://www.saucedemo.com/', // Change this as needed
+    projectId: 'ytnthi',
+    specPattern: 'cypress/**/**/*.cy.{js,jsx,ts,tsx}',
     reporter: 'mochawesome',
     reporterOptions: {
       reportDir: 'cypress/reports',
