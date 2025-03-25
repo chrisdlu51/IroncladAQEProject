@@ -81,7 +81,7 @@ describe("Login to Ironclad negative test cases", () => {
     getErrorMessage().should('be.visible');
   });
 
-  it.only("Attemps login to Ironclad demo site with invalid credentials", () => {
+  it("Attemps login to Ironclad demo site with invalid credentials", () => {
     loginPage.visit();
     loginPage.enterLoginEmail('a', false);
 
