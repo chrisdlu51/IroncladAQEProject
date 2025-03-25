@@ -25,9 +25,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run Cypress Tests in parallel
-        # run: npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --parallel --browser chrome --headless # --reporter mochawesome
-        run: DEBUG=cypress:* npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --parallel --browser chrome --headless
+      - name: Run Cypress Tests
+        run: npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --browser chrome --headless # --reporter mochawesome
+        # run: DEBUG=cypress:* npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --parallel --browser chrome --headless
 
       - name: Upload Cypress Logs
         uses: actions/upload-artifact@v4
