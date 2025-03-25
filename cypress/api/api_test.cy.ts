@@ -2,16 +2,21 @@
 
 describe("API Test - JSONPlaceholder", () => {
     const baseUrl = "https://jsonplaceholder.typicode.com";
+
+    beforeEach(function() {
+      cy.task('logMessage', `START TEST: ${this.currentTest.title}`);
+    });
+    
+    afterEach(function() {
+      cy.task('logMessage', `END TEST: ${this.currentTest.title} - Status: ${this.currentTest.state}`);
+    });
   
     it("GET /posts should return a list of posts", () => {
       cy.request("GET", `${baseUrl}/posts`).then((response) => {
         expect(response.status).to.eq(200);
         expect(response.body).to.be.an("array");
         expect(response.body.length).to.be.greaterThan(0);
-        cy.log(response.body);
-        for (var v in response.body[0]) {
-          cy.log(v, response.body[0][v]);
-        }
+        cy.task('logAPIResponse', `API Response: ${JSON.stringify(response.body)}`);
       });
     });
   
@@ -23,6 +28,7 @@ describe("API Test - JSONPlaceholder", () => {
       }).then((response) => {
         expect(response.status).to.eq(201);
         expect(response.body).to.have.property("id");
+        cy.task('logAPIResponse', `API Response: ${JSON.stringify(response.body)}`);
       });
     });
   
@@ -35,12 +41,14 @@ describe("API Test - JSONPlaceholder", () => {
       }).then((response) => {
         expect(response.status).to.eq(200);
         expect(response.body.title).to.eq("Updated post title");
+        cy.task('logAPIResponse', `API Response: ${JSON.stringify(response.body)}`);
       });
     });
   
     it("DELETE /posts/1 should delete a post", () => {
       cy.request("DELETE", `${baseUrl}/posts/1`).then((response) => {
         expect(response.status).to.eq(200);
+        cy.task('logAPIResponse', `API Response: ${JSON.stringify(response.body)}`);
       });
     });
   });

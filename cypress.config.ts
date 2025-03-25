@@ -16,6 +16,32 @@ export default defineConfig({
     },
     watchForFileChanges: false,
     setupNodeEvents(on, config) {
+      const MAX_LOG_LINES = 1000;
+
+      on('task', {
+        logMessage(message: string) {
+          const logFile = 'cypress/logs/test.log';
+          fs.appendFileSync(logFile, message + '\n');
+
+          const lines = fs.readFileSync(logFile, 'utf8').split('\n');
+          if (lines.length > MAX_LOG_LINES) {
+            fs.writeFileSync(logFile, lines.slice(-MAX_LOG_LINES).join('\n'));
+          }
+
+          return null;
+        },
+        logAPIResponse(message: string) {
+          const logFile = 'cypress/logs/apiResponse.log';
+          fs.appendFileSync(logFile, message + '\n');
+
+          const lines = fs.readFileSync(logFile, 'utf8').split('\n');
+          if (lines.length > MAX_LOG_LINES) {
+            fs.writeFileSync(logFile, lines.slice(-MAX_LOG_LINES).join('\n'));
+          }
+
+          return null;
+        }
+      });
       on('before:run', () => {
         const reportDir = 'cypress/reports';
         const maxReports = 5;
