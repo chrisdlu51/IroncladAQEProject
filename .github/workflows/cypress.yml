@@ -24,6 +24,12 @@ jobs:
       - name: Run Cypress Tests in parallel
         run: npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --parallel --browser chrome --headless # --reporter mochawesome
 
+      - name: Upload Cypress Logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-logs
+          path: cypress/logs/
+
 #      - name: Upload Mochawesome JSON Reports
 #        if: always()
 #        uses: actions/upload-artifact@v4
