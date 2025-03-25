@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 import { LoginPage } from "../support/pageObjects/loginPage";
 
-describe("Login happy path test", () => {
+describe("Login to Ironclad happy path test", () => {
   const loginPage = new LoginPage();
   let userData: any;
 
@@ -23,24 +23,26 @@ describe("Login happy path test", () => {
     cy.task('logMessage', `END TEST: ${this.currentTest.title} - Status: ${this.currentTest.state}`);
   });
 
-  it.only("Logs in to the Ironclad demo site with remember me box checked", () => {
+  it("Logs in to the Ironclad demo site without checking remember me box", () => {
     loginPage.visit();
-    loginPage.loginWithCredentials(userData.username, userData.password, false);
+    loginPage.enterLoginEmail(userData.username, false);
+    loginPage.enterLoginPassword(userData.password);
     cy.url().should('eq', userData.postLoginUrl);
+  });
 
-    // cy.visit('https://google.com');
-    // loginPage.visit();
-
-    // loginPage.visit();
-    // loginPage.loginWithCredentials(userData.username, userData.password, true);  
-    // cy.url().should('eq', userData.postLoginUrl);
-    
-    // loginPage.visit()
-    // cy.url().should('eq', userData.postLoginUrl);
+  it("Logs in to the Ironclad demo site and checks remember me box", () => {
+    loginPage.visit();
+    loginPage.enterLoginEmail(userData.username, true);
+    loginPage.enterLoginPassword(userData.password);
+    cy.url().should('eq', userData.postLoginUrl);
     
   });
 
-  it("Revisits page to verify login persistence", () => {
+  it.skip("Logs in to the Ironclad demo site without checking remember me box", () => {
+    loginPage.visit();
+    loginPage.enterLoginEmail(userData.username, true);
+    loginPage.enterLoginPassword(userData.password);
+    cy.url().should('eq', userData.postLoginUrl);
     
   });
 });

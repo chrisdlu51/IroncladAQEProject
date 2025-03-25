@@ -6,15 +6,16 @@ export class LoginPage {
       cy.visit('/');
     }
   
-    loginWithCredentials(username: string, password: string, rememberMe: boolean) {
+    enterLoginEmail(username: string, rememberMe: boolean) {
       getTextInputBtn().type(username);
-
       if (rememberMe) {
         getRememberMeCheckbox().click();
       };
-      
-      getContinueBtn().click();
-      getTextInputBtn().type(password);
       getContinueBtn().click();
     }
+
+    enterLoginPassword(password: string) {
+      getTextInputBtn().type(password);
+      getContinueBtn().click();
+    };
 }
