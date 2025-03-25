@@ -15,10 +15,13 @@ jobs:
         with:
           node-version: 18
 
+      - name: Create log directory
+        run: mkdir -p cypress/logs 
+
       - name: Install Dependencies
         run: npm install
 
-      - name: Run Cypress Tests in parallel with mochawesome
+      - name: Run Cypress Tests in parallel
         run: npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --parallel --browser chrome --headless # --reporter mochawesome
 
 #      - name: Upload Mochawesome JSON Reports
