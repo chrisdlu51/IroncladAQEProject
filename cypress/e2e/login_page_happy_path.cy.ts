@@ -87,7 +87,7 @@ describe("Login to Ironclad negative test cases", () => {
 
     cy.get('input[type="email"]').then(($input) => {
       const validationMessage = $input[0].validationMessage;
-      expect(validationMessage).to.eq("Please include an '@' in the email address. 'a' is missing an '@'");
+      expect(validationMessage).to.eq(`Please include an '@' in the email address. 'a' is missing an '@'`);
     });
   });
 
