@@ -26,6 +26,4 @@ export class LoginPage {
     resendEmailLoginLink() {
       getResendEmailLoginLinkBtn().click();
     };
-
-    waitFor
 }

@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 import { LoginPage } from "../support/pageObjects/loginPage";
-import { getToastMessage } from "../support/selectors/loginPageSelectors";
+import { getContinueBtn, getErrorMessage, getToastMessage } from "../support/selectors/loginPageSelectors";
 
 describe("Login to Ironclad happy path test", () => {
   const loginPage = new LoginPage();
@@ -73,6 +73,25 @@ describe("Login to Ironclad negative test cases", () => {
   afterEach(function() {
     cy.task('logMessage', `END TEST: ${this.currentTest.title} - Status: ${this.currentTest.state}`);
   });
+
+  it("Attemps login to Ironclad demo site with empty credentials", () => {
+    loginPage.visit();
+    getContinueBtn().click();
+
+    getErrorMessage().should('be.visible');
+  });
+
+  it.only("Attemps login to Ironclad demo site with invalid credentials", () => {
+    loginPage.visit();
+    loginPage.enterLoginEmail('a', false);
+
+    cy.get('input[type="email"]').then(($input) => {
+      const validationMessage = $input[0].validationMessage;
+      expect(validationMessage).to.eq("Please include an '@' in the email address. 'a' is missing an '@'");
+    });
+  });
+
+  
 
 });
   

@@ -16,3 +16,4 @@ export const getDifferentEmailBtn = () => cy.get('.password-links > :nth-child(4
 export const getForgotPasswordBtn = () => cy.get('.forgot-password-container > .ic-button > .button-text');
 export const getResendEmailLoginLinkBtn = () => cy.get('.button-text');
 export const getToastMessage = () => cy.get('.Toast-module_contentContainer_s96GIs', { timeout: 7000 });
+export const getErrorMessage = () =>cy.get('.error-message-text');
