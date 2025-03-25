@@ -10,6 +10,9 @@ describe("Sample Test", () => {
     cy.fixture("example.json").then((data) => {
       userData = data;
     });
+
+    cy.clearAllSessionStorage();
+    cy.clearCookies();
   });
 
   beforeEach(function() {
