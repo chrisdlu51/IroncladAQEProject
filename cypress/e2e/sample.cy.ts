@@ -20,7 +20,7 @@ describe("Sample Test", () => {
     cy.task('logMessage', `END TEST: ${this.currentTest.title} - Status: ${this.currentTest.state}`);
   });
 
-  it("Logs in to the Saucelabs demo site", () => {
+  it.only("Logs in to the Saucelabs demo site", () => {
     loginPage.visit();
     loginPage.fillCredentials(userData.username, userData.password);
     loginPage.submit(); //

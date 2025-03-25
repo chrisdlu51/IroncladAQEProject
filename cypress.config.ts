@@ -20,7 +20,14 @@ export default defineConfig({
 
       on('task', {
         logMessage(message: string) {
-          const logFile = 'cypress/logs/test.log';
+          const logDir = 'cypress/logs';
+          const logFile = path.join(logDir, 'test.log');
+
+          // ensure the logs directory exists
+          if (!fs.existsSync(logDir)) {
+            fs.mkdirSync(logDir, { recursive: true });  // create the directory if it doesn't exist
+          }
+
           fs.appendFileSync(logFile, message + '\n');
 
           const lines = fs.readFileSync(logFile, 'utf8').split('\n');
