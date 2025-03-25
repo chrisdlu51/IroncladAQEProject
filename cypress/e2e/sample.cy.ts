@@ -20,12 +20,11 @@ describe("Sample Test", () => {
     cy.task('logMessage', `END TEST: ${this.currentTest.title} - Status: ${this.currentTest.state}`);
   });
 
-  it.only("Logs in to the Saucelabs demo site", () => {
+  it("Logs in to the Saucelabs demo site", () => {
     loginPage.visit();
     loginPage.fillCredentials(userData.username, userData.password);
-    loginPage.submit(); //
-
-    // cy.url().should("include", "/dashboard");
+    loginPage.submit(); 
+    
     cy.url().should('eq', 'https://www.saucedemo.com/inventory.html');
   });
 });
