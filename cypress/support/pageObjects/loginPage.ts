@@ -1,4 +1,4 @@
-import { loginPageLocators } from "../locators/loginPageLocators";
+import { getContinueBtn, getRememberMeCheckbox, getTextInputBtn, loginPageLocators } from "../selectors/loginPageSelectors";
 
 export class LoginPage {
   
@@ -6,12 +6,15 @@ export class LoginPage {
       cy.visit('/');
     }
   
-    fillCredentials(username: string, password: string) {
-      cy.get(loginPageLocators.usernameInput).type(username);
-      cy.get(loginPageLocators.passwordInput).type(password);
-    }
-  
-    submit() {
-      cy.get(loginPageLocators.loginButton).click();
+    loginWithCredentials(username: string, password: string, rememberMe: boolean) {
+      getTextInputBtn().type(username);
+
+      if (rememberMe) {
+        getRememberMeCheckbox().click();
+      };
+      
+      getContinueBtn().click();
+      getTextInputBtn().type(password);
+      getContinueBtn().click();
     }
 }

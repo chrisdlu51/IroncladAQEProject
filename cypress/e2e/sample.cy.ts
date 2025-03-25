@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 import { LoginPage } from "../support/pageObjects/loginPage";
 
-describe("Sample Test", () => {
+describe("Login happy path test", () => {
   const loginPage = new LoginPage();
   let userData: any;
 
@@ -23,12 +23,25 @@ describe("Sample Test", () => {
     cy.task('logMessage', `END TEST: ${this.currentTest.title} - Status: ${this.currentTest.state}`);
   });
 
-  it("Logs in to the Saucelabs demo site", () => {
+  it.only("Logs in to the Ironclad demo site with remember me box checked", () => {
     loginPage.visit();
-    loginPage.fillCredentials(userData.username, userData.password);
-    loginPage.submit(); 
+    loginPage.loginWithCredentials(userData.username, userData.password, false);
+    cy.url().should('eq', userData.postLoginUrl);
+
+    // cy.visit('https://google.com');
+    // loginPage.visit();
+
+    // loginPage.visit();
+    // loginPage.loginWithCredentials(userData.username, userData.password, true);  
+    // cy.url().should('eq', userData.postLoginUrl);
     
-    cy.url().should('eq', 'https://www.saucedemo.com/inventory.html');
+    // loginPage.visit()
+    // cy.url().should('eq', userData.postLoginUrl);
+    
+  });
+
+  it("Revisits page to verify login persistence", () => {
+    
   });
 });
   

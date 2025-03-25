@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run Cypress Tests
+      - name: Run Cypress tests and record results to dashboard
         run: npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --browser chrome --headless # --reporter mochawesome
         # run: DEBUG=cypress:* npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --parallel --browser chrome --headless
 

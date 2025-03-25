@@ -4,7 +4,7 @@ import path from 'path';
 
 export default defineConfig({
   e2e: {
-    baseUrl: 'https://www.saucedemo.com/', // Change this as needed
+    baseUrl: 'https://quantum-flex.ironcladapp.com/', // Change this as needed
     projectId: 'ytnthi',
     specPattern: 'cypress/**/**/*.cy.{js,jsx,ts,tsx}',
     // reporter: 'mochawesome',
