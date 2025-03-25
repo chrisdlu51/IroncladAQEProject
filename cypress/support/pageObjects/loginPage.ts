@@ -1,4 +1,4 @@
-import { getContinueBtn, getRememberMeCheckbox, getTextInputBtn, loginPageLocators } from "../selectors/loginPageSelectors";
+import { getContinueBtn, getOneTimeLinkBtn, getRememberMeCheckbox, getResendEmailLoginLinkBtn, getTextInputBtn, loginPageLocators } from "../selectors/loginPageSelectors";
 
 export class LoginPage {
   
@@ -18,4 +18,14 @@ export class LoginPage {
       getTextInputBtn().type(password);
       getContinueBtn().click();
     };
+
+    sendEmailLoginLink() {
+      getOneTimeLinkBtn().click();
+    };
+
+    resendEmailLoginLink() {
+      getResendEmailLoginLinkBtn().click();
+    };
+
+    waitFor
 }
